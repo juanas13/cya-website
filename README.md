@@ -1,2 +1,0 @@
-# cya-website
-Site CYA
