@@ -1,19 +1,26 @@
+import type { Metadata } from "next";
 import "./globals.css";
 
-export const metadata = {
- title: "CYA Token - CryptoIA | Staking + Rewards IA",
- description: "Premier token BSC avec staking intelligent et rewards automatisés par IA",
+export const metadata: Metadata = {
+  title: "CYA Token – CryptoIA | Staking + Rewards IA",
+  description: "Le premier token BSC avec staking intelligent et rewards IA automatisés",
+  openGraph: {
+    images: ["/iHmVe2H_d.jpeg"],
+  },
 };
 
-export default function RootLayout({ children }) {
- return (
- <html lang="fr">
- <head>
- <link rel="icon" href="/favicon.ico" />
- <meta property="og:image" content="https://juanas13-cya-website-5qv4ztp34-juanas13s-projects.vercel.app/iHmVe2H_d.jpeg" />
- <meta name="twitter:card" content="summary_large_image" />
- </head>
- <body>{children}</body>
- </html>
- );
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="fr">
+      <head>
+        {/* Favicon = ton logo carré */}
+        <link rel="icon" href="/iHmVe2H_d.jpeg" sizes="any" />
+      </head>
+      <body className="bg-black text-white antialiased">{children}</body>
+    </html>
+  );
 }
