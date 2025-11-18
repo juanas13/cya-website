@@ -10,7 +10,7 @@ export default function RootLayout({ children }) {
  <html lang="fr">
  <head>
  <link rel="icon" href="/favicon.ico" />
- <meta property="og:image" content="https://juanas13-cya-website-5qv4ztp34-juanas13s-projects.vercel.app/og.png" />
+ <meta property="og:image" content="https://juanas13-cya-website-5qv4ztp34-juanas13s-projects.vercel.app/iHmVe2H_d.jpeg" />
  <meta name="twitter:card" content="summary_large_image" />
  </head>
  <body>{children}</body>
