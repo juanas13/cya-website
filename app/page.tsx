@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ArrowRight, Copy, Twitter, Telegram } from "lucide-react";
+import { ArrowRight, Copy, Twitter, MessageCircle } from "lucide-react";
 
 function copyCA() {
   navigator.clipboard.writeText("0x671cb1a2c934017fc019a7a4bf11ae5a30a32354");
@@ -14,13 +14,13 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-b from-purple-900/30 to-transparent opacity-60" />
         
         <div className="max-w-7xl mx-auto text-center relative z-10">
-          {/* TON LOGO (ton fichier exact) */}
+          {/* TON LOGO EXACT */}
           <Image
             src="/iHmVe2H_d.jpeg"
             alt="CYA Token Logo"
-            width={280}
-            height={280}
-            className="mx-auto mb-10 rounded-full shadow-2xl border-4 border-purple-600 animate-pulse"
+            width={300}
+            height={300}
+            className="mx-auto mb-10 rounded-full shadow-2xl border-8 border-purple-600/50"
             priority
           />
 
@@ -39,7 +39,7 @@ export default function Home() {
 
           <div className="flex flex-col sm:flex-row gap-8 justify-center mb-20">
             <a
-              href="https://pancakeswap.finance/swap?outputCurrency=0x671cb1a2c934017fc019a7a4bf 11ae5a30a32354"
+              href="https://pancakeswap.finance/swap?outputCurrency=0x671cb1a2c934017fc019a7a4bf11ae5a30a32354"
               target="_blank"
               rel="noopener noreferrer"
               className="px-16 py-8 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl font-bold text-2xl hover:scale-110 transition-all shadow-2xl flex items-center gap-4 justify-center"
@@ -72,14 +72,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Footer */}
+      {/* Footer avec icônes corrigées */}
       <footer className="py-20 border-t border-gray-800 text-center">
-        <div className="flex justify-center gap-16 text-6xl mb-10">
+        <div className="flex justify-center gap-20 text-7xl mb-10">
           <a href="https://twitter.com/CYATokenBSC" target="_blank" rel="noopener noreferrer" className="hover:text-cyan-400 transition">
             <Twitter />
           </a>
           <a href="https://t.me/CYATokenBSC" target="_blank" rel="noopener noreferrer" className="hover:text-cyan-400 transition">
-            <Telegram />
+            <MessageCircle />
           </a>
         </div>
         <p className="text-gray-400 text-lg">© 2025 CYA Token – CryptoIA Revolution</p>
@@ -87,4 +87,4 @@ export default function Home() {
       </footer>
     </div>
   );
-               }
+}
