@@ -1,7 +1,10 @@
-"use client"; // ← LIGNE MAGIQUE QUI RÉSOUT TOUT
+"use client"; // Obligatoire pour le onClick
 
 import Image from "next/image";
 import { ArrowRight, Copy, Twitter, MessageCircle } from "lucide-react";
+
+// Désactive la génération statique (ligne magique qui règle tout)
+export const dynamic = "force-dynamic";
 
 function copyCA() {
   navigator.clipboard.writeText("0x671cb1a2c934017fc019a7a4bf11ae5a30a32354");
@@ -16,7 +19,6 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-b from-purple-900/30 to-transparent opacity-60" />
         
         <div className="max-w-7xl mx-auto text-center relative z-10">
-          {/* TON LOGO */}
           <Image
             src="/iHmVe2H_d.jpeg"
             alt="CYA Token Logo"
