@@ -1,3 +1,5 @@
+"use client"; // ← LIGNE MAGIQUE QUI RÉSOUT TOUT
+
 import Image from "next/image";
 import { ArrowRight, Copy, Twitter, MessageCircle } from "lucide-react";
 
@@ -14,7 +16,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-b from-purple-900/30 to-transparent opacity-60" />
         
         <div className="max-w-7xl mx-auto text-center relative z-10">
-          {/* TON LOGO EXACT */}
+          {/* TON LOGO */}
           <Image
             src="/iHmVe2H_d.jpeg"
             alt="CYA Token Logo"
@@ -72,7 +74,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Footer avec icônes corrigées */}
+      {/* Footer */}
       <footer className="py-20 border-t border-gray-800 text-center">
         <div className="flex justify-center gap-20 text-7xl mb-10">
           <a href="https://twitter.com/CYATokenBSC" target="_blank" rel="noopener noreferrer" className="hover:text-cyan-400 transition">
