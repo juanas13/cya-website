@@ -1,13 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Copy } from "lucide-react";
 
-// Fonction pour copier l'adresse du contrat
+// Fonction pour copier l'adresse du contrat (améliorée avec toast au lieu d'alert)
 function copyCA() {
   navigator.clipboard.writeText("0x671cb1a2c934017fc019a7a4bf11ae5a30a32354");
-  // Toast plus propre qu'un alert()
   const toast = document.createElement("div");
   toast.textContent = "Adresse CA copiée !";
   toast.className =
@@ -18,82 +15,60 @@ function copyCA() {
 
 export const dynamic = "force-dynamic";
 
-export default function Home() {
+export default function BuyPage() {
   return (
-    <div className="min-h-screen bg-black text-white overflow-x-hidden">
-      {/* Hero Section */}
-      <section className="relative px-6 py-32 text-center bg-gradient-to-b from-purple-900/40 via-black to-black">
-        {/* Logo CYA */}
-        <Image
-          src="/iHmVe2H_d.jpeg"
-          alt="Logo CYA Token"
-          width={300}
-          height={300}
-          className="mx-auto mb-10 rounded-full border-8 border-purple-600 shadow-2xl shadow-purple-600/50"
-          priority
-        />
-
-        {/* Titre principal */}
-        <h1 className="text-6xl md:text-8xl font-black mb-8 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-          CYA TOKEN
+    <div className="min-h-screen px-6 py-20 bg-gradient-to-b from-black to-purple-900 text-white overflow-x-hidden">
+      <div className="max-w-4xl mx-auto">
+        <h1 className="text-6xl font-black mb-12 text-center bg-gradient-to-r from-cyan-400 to-pink-400 bg-clip-text text-transparent">
+          Comment acheter CYA
         </h1>
 
-        <p className="text-2xl md:text-4xl mb-12 text-gray-300 max-w-4xl mx-auto leading-relaxed">
-          Le premier token IA qui récompense vraiment ses holders
-        </p>
-
-        {/* Boutons d'action */}
-        <div className="flex flex-col sm:flex-row gap-8 justify-center items-center">
-          <Link
-            href="/buy"
-            className="group px-16 py-8 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-2xl font-bold text-2xl hover:scale-110 transition-all duration-300 shadow-2xl shadow-purple-600/50 flex items-center gap-4 justify-center"
-          >
-            Acheter CYA
-            <ArrowRight className="w-8 h-8 group-hover:translate-x-2 transition" />
-          </Link>
-
-          <button
-            onClick={copyCA}
-            className="px-16 py-8 border-2 border-purple-600 rounded-2xl font-bold text-2xl hover:bg-purple-600/30 transition-all duration-300 flex items-center gap-4 backdrop-blur"
-          >
-            <Copy className="w-7 h-7" />
-            Copier l’adresse CA
-          </button>
-        </div>
-      </section>
-
-      {/* Section Stats / Tokenomics */}
-      <section className="py-20 px-6">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-10">
-          {/* Taxe totale */}
-          <div className="bg-gradient-to-br from-purple-900/20 to-black border border-purple-800 rounded-3xl p-10 text-center backdrop-blur hover:scale-105 transition">
-            <div className="text-6xl font-bold text-purple-400">2.5%</div>
-            <p className="text-xl text-gray-400 mt-4">Taxes totales</p>
-            <p className="text-sm text-gray-500 mt-2">2% + 0.5% burn</p>
+        <div className="space-y-12 text-lg">
+          {/* Étape 1 */}
+          <div className="bg-white/5 backdrop-blur rounded-2xl p-8 border border-white/10 hover:scale-105 transition duration-300">
+            <h2 className="text-3xl font-bold mb-6">Étape 1 – Prépare ton wallet</h2>
+            <p>Installe MetaMask ou Trust Wallet et passe sur le réseau Binance Smart Chain (BSC).</p>
           </div>
 
-          {/* Supply maximale */}
-          <div className="bg-gradient-to-br from-purple-900/20 to-black border border-purple-800 rounded-3xl p-10 text-center backdrop-blur hover:scale-105 transition">
-            <div className="text-6xl font-bold text-purple-400">1M</div>
-            <p className="text-xl text-gray-400 mt-4">Supply Max</p>
-            <p className="text-sm text-gray-500 mt-2">1 000 000 CYA</p>
+          {/* Étape 2 */}
+          <div className="bg-white/5 backdrop-blur rounded-2xl p-8 border border-white/10 hover:scale-105 transition duration-300">
+            <h2 className="text-3xl font-bold mb-6">Étape 2 – Ajoute du BNB</h2>
+            <p>Achète du BNB sur Binance, KuCoin, etc., puis transfère-le sur ton wallet BSC.</p>
           </div>
 
-          {/* APY Staking */}
-          <div className="bg-gradient-to-br from-purple-900/20 to-black border border-purple-800 rounded-3xl p-10 text-center backdrop-blur hover:scale-105 transition">
-            <div className="text-6xl font-bold text-purple-400">100%</div>
-            <p className="text-xl text-gray-400 mt-4">APY Max Staking</p>
-            <p className="text-sm text-gray-500 mt-2">Jusqu’à 100% ajustable</p>
+          {/* Étape 3 */}
+          <div className="bg-white/5 backdrop-blur rounded-2xl p-8 border border-white/10 hover:scale-105 transition duration-300">
+            <h2 className="text-3xl font-bold mb-6">Étape 3 – Achète CYA sur PancakeSwap</h2>
+            <p className="mb-6">
+              Clique sur le bouton ci-dessous, connecte ton wallet, colle l’adresse du token et swap BNB → CYA.
+            </p>
+            <div className="text-center">
+              <Link
+                href="https://pancakeswap.finance/swap?outputCurrency=0x671cb1a2c934017fc019a7a4bf11ae5a30a32354&inputCurrency=BNB"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block px-12 py-6 bg-gradient-to-r from-cyan-500 to-pink-500 rounded-full font-bold text-xl hover:scale-105 transition duration-300 shadow-2xl"
+              >
+                Acheter CYA sur PancakeSwap
+              </Link>
+            </div>
+          </div>
+
+          {/* Adresse CA */}
+          <div className="text-center text-gray-400 mt-16">
+            <p>Adresse contrat CYA :</p>
+            <code className="block mt-2 p-3 bg-black/50 rounded text-cyan-400 break-all">
+              0x671cb1a2c934017fc019a7a4bf11ae5a30a32354
+            </code>
+            <button
+              onClick={copyCA}
+              className="mt-4 px-8 py-4 border border-cyan-500 rounded-full font-bold hover:bg-cyan-500/20 transition"
+            >
+              Copier l’adresse
+            </button>
           </div>
         </div>
-      </section>
-
-      {/* Optionnel : Petite section CTA finale */}
-      <section className="py-16 text-center">
-        <p className="text-gray-500 text-sm">
-          Contrat vérifié • Upgradeable • Audité OpenZeppelin v5
-        </p>
-      </section>
+      </div>
     </div>
   );
 }
