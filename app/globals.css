@@ -2,17 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ============================================= */
-/*               GRADIENTS & TEXTES              */
-/* ============================================= */
-
+/* GRADIENTS & TEXTES */
 @layer utilities {
-  /* Gradient principal (utilisé pour boutons, titres, etc.) */
   .bg-gradient-purple {
     background: linear-gradient(135deg, #a855f7 0%, #ec4899 50%, #f43f5e 100%);
   }
 
-  /* Gradient texte (titre CYA, etc.) */
   .text-gradient {
     @apply bg-gradient-to-r from-purple-400 via-pink-500 to-cyan-400;
     -webkit-background-clip: text;
@@ -22,7 +17,6 @@
     animation: gradientShift 8s ease infinite;
   }
 
-  /* Gradient alternatif (plus doux) */
   .text-gradient-alt {
     @apply bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500;
     -webkit-background-clip: text;
@@ -30,51 +24,23 @@
     color: transparent;
   }
 
-  /* Animation fluide du gradient texte */
   @keyframes gradientShift {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
   }
 
-  /* ============================================= */
-  /*               ANIMATIONS MOBILE MENU          */
-  /* ============================================= */
-
+  /* ANIMATIONS MOBILE MENU */
   @keyframes slide-in {
-    from {
-      transform: translateX(100%);
-      opacity: 0;
-    }
-    to {
-      transform: translateX(0);
-      opacity: 1;
-    }
-  }
-
-  @keyframes slide-out {
-    from {
-      transform: translateX(0);
-      opacity: 1;
-    }
-    to {
-      transform: translateX(100%);
-      opacity: 0;
-    }
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
   }
 
   .animate-slide-in {
     animation: slide-in 0.35s ease-out forwards;
   }
 
-  .animate-slide-out {
-    animation: slide-out 0.35s ease-in forwards;
-  }
-
-  /* ============================================= */
-  /*               AUTRES ANIMATIONS UTILES        */
-  /* ============================================= */
-
+  /* AUTRES ANIMATIONS */
   @keyframes pulse-glow {
     0%, 100% { box-shadow: 0 0 20px rgba(168, 85, 247, 0.5); }
     50% { box-shadow: 0 0 40px rgba(236, 72, 153, 0.8); }
@@ -84,16 +50,12 @@
     animation: pulse-glow 4s infinite;
   }
 
-  /* Hover glow pour boutons */
   .hover-glow:hover {
     box-shadow: 0 0 30px rgba(168, 85, 247, 0.6);
     transition: all 0.3s ease;
   }
 
-  /* ============================================= */
-  /*               SCROLLBAR PERSONNALISÉE         */
-  /* ============================================= */
-
+  /* SCROLLBAR */
   ::-webkit-scrollbar {
     width: 10px;
   }
@@ -112,22 +74,16 @@
   }
 }
 
-/* ============================================= */
-/*               CLASSES GLOBALES                */
-/* ============================================= */
-
+/* CLASSES GLOBALES */
 @layer components {
-  /* Boutons principaux */
   .btn-primary {
     @apply px-8 py-4 bg-gradient-purple rounded-full font-bold text-lg hover:scale-105 transition-all duration-300 shadow-xl hover-glow;
   }
 
-  /* Cartes premium */
   .card-premium {
     @apply bg-gray-900/50 backdrop-blur border border-purple-800 rounded-3xl p-8 hover:scale-105 transition duration-300;
   }
 
-  /* Conteneur centré */
   .container-max {
     @apply max-w-7xl mx-auto px-6;
   }
