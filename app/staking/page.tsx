@@ -1,6 +1,6 @@
 'use client';
 
-import { useAccount, useConnect, useDisconnect, useReadContract, useWriteContract } from 'wagmi';
+import { useAccount, useConnect, useDisconnect, useReadContract, useWriteContract, useWaitForTransactionReceipt } from 'wagmi';
 import { injected } from '@wagmi/connectors';
 import { useState } from 'react';
 import { parseEther, formatEther } from 'viem';
