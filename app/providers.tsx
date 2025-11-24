@@ -3,15 +3,15 @@
 import { WagmiProvider, createConfig, http } from 'wagmi';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { bsc } from 'viem/chains';
-import { metaMask, walletConnect, injected } from 'wagmi/connectors';
+import { injected } from 'wagmi/connectors';
 
-// ON DÉSACTIVE LE NOUVEAU METAMASK SDK BUGGUÉ
+// UTILISE INJECTED POUR METAMASK (legacy, sans SDK + sans erreur async-storage)
 const config = createConfig({
   chains: [bsc],
   connectors: [
-    metaMask({ useDeprecated: true }), // SOLUTION FIABLE
-    injected(),
-    // walletConnect({ projectId: 'ton-project-id-si-tu-veux' }),
+    injected({ target: 'metaMask' }), // MetaMask legacy → zéro bug
+    // injected(), // Si tu veux d'autres wallets injected
+    // walletConnect({ projectId: 'TON_PROJECT_ID_SI_BESOIN' }), // Décommente si besoin
   ],
   transports: {
     [bsc.id]: http(),
