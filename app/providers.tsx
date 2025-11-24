@@ -1,12 +1,18 @@
 'use client';
 
-import { WagmiProvider } from 'wagmi';
+import { WagmiProvider, createConfig, http } from 'wagmi';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { createConfig, http } from 'wagmi';
 import { bsc } from 'viem/chains';
+import { metaMask, walletConnect, injected } from 'wagmi/connectors';
 
+// ON DÉSACTIVE LE NOUVEAU METAMASK SDK BUGGUÉ
 const config = createConfig({
   chains: [bsc],
+  connectors: [
+    metaMask({ useDeprecated: true }), // SOLUTION FIABLE
+    injected(),
+    // walletConnect({ projectId: 'ton-project-id-si-tu-veux' }),
+  ],
   transports: {
     [bsc.id]: http(),
   },
