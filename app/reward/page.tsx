@@ -16,7 +16,7 @@ export const dynamic = 'force-dynamic';
 
 export default function RewardPage() {
   const { address, isConnected } = useAccount();
-  const { disconnect } = useDisconnect(); // Ajouté ici
+  const { disconnect } = useDisconnect();
   const { writeContract, data: hash, isPending: isTxPending } = useWriteContract();
   const { isLoading: isConfirming, isSuccess: isConfirmed } = useWaitForTransactionReceipt({ hash });
 
