@@ -1,6 +1,6 @@
 'use client';
 
-import { useAccount, useReadContract, useWriteContract } from 'wagmi';
+import { useAccount, useWaitForTransactionReceipt, useReadContract, useWriteContract } from 'wagmi';
 import { useState } from 'react';
 import { parseEther, formatEther } from 'viem';
 import { ArrowRight, Wallet, CheckCircle, Loader2 } from 'lucide-react';
