@@ -43,7 +43,12 @@ export default function RewardPage() {
     });
   };
 
-  // SÉCURITÉ TYPE BIGINT
+  // Fonction 100 % sûre pour éviter les erreurs TypeScript
+  const formatRewards = (value: bigint | undefined | null) => {
+    if (!value || value === 0n) return '0.000000';
+    return Number(formatEther(value)).toFixed(6);
+  };
+
   const rewardsAmount = rewards ?? 0n;
 
   return (
@@ -59,6 +64,7 @@ export default function RewardPage() {
           </div>
         ) : (
           <>
+            {/* Wallet info */}
             <div className="inline-flex items-center gap-4 bg-green-600/20 border border-green-500 rounded-2xl px-8 py-5 mx-auto mb-12">
               <span className="text-xl font-bold">
                 {address?.slice(0, 6)}...{address?.slice(-4)}
@@ -68,13 +74,15 @@ export default function RewardPage() {
               </button>
             </div>
 
+            {/* Rewards Amount */}
             <div className="bg-gray-900/50 backdrop-blur border border-purple-800 rounded-3xl p-12 text-center mb-12">
               <p className="text-xl text-gray-400 mb-4">Rewards disponibles</p>
               <p className="text-6xl font-black text-green-400">
-                {Number(formatEther(rewardsAmount)).toFixed(6)} CYA
+                {formatRewards(rewards)} CYA
               </p>
             </div>
 
+            {/* Transaction States */}
             {(isTxPending || isConfirming) && (
               <div className="text-center py-12">
                 <Loader2 className="w-16 h-16 animate-spin mx-auto text-purple-400" />
@@ -91,12 +99,13 @@ export default function RewardPage() {
               </div>
             )}
 
+            {/* Claim Button */}
             {rewardsAmount > 0n && !isConfirmed && (
               <div className="text-center">
                 <button
                   onClick={handleClaim}
                   disabled={isTxPending || isConfirming}
-                  className="px-20 py-10 bg-green-600 hover:bg-green-500 rounded-3xl font-bold text-3xl transition disabled:opacity-50 shadow-2xl shadow-green-600/50"
+                  className="px-20 py-10 bg-green-600 hover:bg-green-500 rounded-3xl font-bold text-3xl transition disabled:opacity-50 shadow-2xl shadow-green-600/50 disabled:cursor-not-allowed"
                 >
                   {isTxPending || isConfirming ? (
                     <>
