@@ -4,7 +4,7 @@ import { useAccount, useConnect, useDisconnect, useReadContract, useWriteContrac
 import { injected } from '@wagmi/connectors';
 import { useState } from 'react';
 import { parseEther, formatEther } from 'viem';
-import { ArrowRight, Copy, Wallet } from 'lucide-react';
+import { ArrowRight, Wallet } from 'lucide-react';
 
 const CYA_ABI = [
   { name: 'balanceOf', type: 'function', inputs: [{ type: 'address' }], outputs: [{ type: 'uint256' }] },
@@ -86,7 +86,6 @@ export default function StakingPage() {
           Staking CYA
         </h1>
 
-        {/* Connexion Wallet */}
         <div className="text-center mb-16">
           {isConnected ? (
             <div className="inline-flex items-center gap-4 bg-green-600/20 border border-green-500 rounded-2xl px-8 py-5">
@@ -110,7 +109,6 @@ export default function StakingPage() {
 
         {isConnected && (
           <>
-            {/* Stats */}
             <div className="grid md:grid-cols-3 gap-8 mb-12">
               <div className="bg-gray-900/50 backdrop-blur border border-purple-800 rounded-3xl p-8 text-center">
                 <p className="text-gray-400 mb-2">Solde CYA</p>
@@ -126,7 +124,6 @@ export default function StakingPage() {
               </div>
             </div>
 
-            {/* Actions */}
             <div className="space-y-8">
               <div className="bg-white/5 backdrop-blur rounded-2xl p-8 border border-white/10">
                 <h2 className="text-3xl font-bold mb-6">Staker CYA</h2>
@@ -171,4 +168,4 @@ export default function StakingPage() {
       </div>
     </div>
   );
-            }
+}
