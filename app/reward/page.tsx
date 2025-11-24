@@ -1,6 +1,6 @@
 'use client';
 
-import { useAccount, useReadContract, useWriteContract, useWaitForTransactionReceipt } from 'wagmi';
+import { useAccount, useDisconnect, useReadContract, useWriteContract, useWaitForTransactionReceipt } from 'wagmi';
 import { useEffect } from 'react';
 import { formatEther } from 'viem';
 import { Loader2, CheckCircle } from 'lucide-react';
@@ -16,6 +16,7 @@ export const dynamic = 'force-dynamic';
 
 export default function RewardPage() {
   const { address, isConnected } = useAccount();
+  const { disconnect } = useDisconnect(); // Ajouté ici
   const { writeContract, data: hash, isPending: isTxPending } = useWriteContract();
   const { isLoading: isConfirming, isSuccess: isConfirmed } = useWaitForTransactionReceipt({ hash });
 
@@ -55,6 +56,15 @@ export default function RewardPage() {
           </div>
         ) : (
           <>
+            <div className="inline-flex items-center gap-4 bg-green-600/20 border border-green-500 rounded-2xl px-8 py-5 mx-auto mb-12">
+              <span className="text-xl font-bold">
+                {address?.slice(0, 6)}...{address?.slice(-4)}
+              </span>
+              <button onClick={() => disconnect()} className="px-5 py-2 bg-red-600 rounded-full text-sm hover:bg-red-500 transition">
+                Déconnecter
+              </button>
+            </div>
+
             <div className="bg-gray-900/50 backdrop-blur border border-purple-800 rounded-3xl p-12 text-center mb-12">
               <p className="text-xl text-gray-400 mb-4">Rewards disponibles</p>
               <p className="text-6xl font-black text-green-400">
