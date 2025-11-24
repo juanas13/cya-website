@@ -1,6 +1,6 @@
 'use client';
 
-import { useAccount, useConnect, useDisconnect, useReadContract, useWriteContract, useWaitForTransactionReceipt } from 'wagmi';
+import { useAccount, useConnect, useDisconnect, useReadContract, useWriteContract } from 'wagmi';
 import { injected } from '@wagmi/connectors';
 import { useState } from 'react';
 import { parseEther, formatEther } from 'viem';
@@ -17,7 +17,7 @@ const CYA_ABI = [
 
 const CONTRACT_ADDRESS = '0x671cb1a2c934017fc019a7a4bf11ae5a30a32354';
 
-export const dynamic = "force-dynamic";
+export const dynamic = 'force-dynamic';
 
 export default function StakingPage() {
   const { address, isConnected } = useAccount();
@@ -89,44 +89,45 @@ export default function StakingPage() {
         {/* Connexion Wallet */}
         <div className="text-center mb-16">
           {isConnected ? (
-            <div className="flex items-center justify-center gap-4 bg-green-600/20 border border-green-500 rounded-2xl p-6">
-              <Wallet className="w-8 h-8" />
-              <span className="text-xl font-bold">Connecté : {address?.slice(0, 6)}...{address?.slice(-4)}</span>
-              <button onClick={disconnect} className="px-6 py-2 bg-red-600 rounded-full hover:bg-red-500 transition">
+            <div className="inline-flex items-center gap-4 bg-green-600/20 border border-green-500 rounded-2xl px-8 py-5">
+              <Wallet className="w-7 h-7" />
+              <span className="text-xl font-bold">
+                {address?.slice(0, 6)}...{address?.slice(-4)}
+              </span>
+              <button onClick={() => disconnect()} className="px-5 py-2 bg-red-600 rounded-full text-sm hover:bg-red-500 transition">
                 Déconnecter
               </button>
             </div>
           ) : (
             <button
               onClick={() => connect({ connector: injected() })}
-              className="px-12 py-6 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-2xl font-bold text-2xl hover:scale-105 transition"
+              className="px-14 py-7 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-2xl font-bold text-2xl hover:scale-105 shadow-2xl transition"
             >
               Connecter Wallet
             </button>
           )}
         </div>
 
-        {isConnected ? (
+        {isConnected && (
           <>
-            {/* Dashboard Stats */}
+            {/* Stats */}
             <div className="grid md:grid-cols-3 gap-8 mb-12">
-              <div className="bg-gray-900/50 border border-purple-800 rounded-3xl p-8 text-center">
-                <p className="text-gray-400">Solde CYA</p>
-                <div className="text-4xl font-bold text-purple-400">{formatEther(balance || 0)} CYA</div>
+              <div className="bg-gray-900/50 backdrop-blur border border-purple-800 rounded-3xl p-8 text-center">
+                <p className="text-gray-400 mb-2">Solde CYA</p>
+                <p className="text-4xl font-bold text-purple-400">{formatEther(balance || 0n)} CYA</p>
               </div>
-              <div className="bg-gray-900/50 border border-purple-800 rounded-3xl p-8 text-center">
-                <p className="text-gray-400">Staké</p>
-                <div className="text-4xl font-bold text-purple-400">{formatEther(staked || 0)} CYA</div>
+              <div className="bg-gray-900/50 backdrop-blur border border-purple-800 rounded-3xl p-8 text-center">
+                <p className="text-gray-400 mb-2">Staké</p>
+                <p className="text-4xl font-bold text-purple-400">{formatEther(staked || 0n)} CYA</p>
               </div>
-              <div className="bg-gray-900/50 border border-purple-800 rounded-3xl p-8 text-center">
-                <p className="text-gray-400">Rewards</p>
-                <div className="text-4xl font-bold text-green-400">{formatEther(rewards || 0)} CYA</div>
+              <div className="bg-gray-900/50 backdrop-blur border border-purple-800 rounded-3xl p-8 text-center">
+                <p className="text-gray-400 mb-2">Rewards</p>
+                <p className="text-4xl font-bold text-green-400">{formatEther(rewards || 0n)} CYA</p>
               </div>
             </div>
 
             {/* Actions */}
             <div className="space-y-8">
-              {/* Stake */}
               <div className="bg-white/5 backdrop-blur rounded-2xl p-8 border border-white/10">
                 <h2 className="text-3xl font-bold mb-6">Staker CYA</h2>
                 <div className="flex gap-4">
@@ -139,22 +140,23 @@ export default function StakingPage() {
                   />
                   <button
                     onClick={handleStake}
-                    className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-pink-500 rounded-xl font-bold hover:scale-105 transition"
+                    disabled={!stakeAmount}
+                    className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-pink-500 rounded-xl font-bold hover:scale-105 transition disabled:opacity-50"
                   >
-                    Staker <ArrowRight className="w-5 h-5 inline" />
+                    Staker <ArrowRight className="w-5 h-5 inline ml-2" />
                   </button>
                 </div>
               </div>
 
-              {/* Unstake & Claim */}
-              <div className="flex gap-4 justify-center">
+              <div className="flex gap-6 justify-center">
                 <button
                   onClick={handleUnstake}
-                  className="px-12 py-6 bg-purple-600 rounded-xl font-bold hover:bg-purple-500 transition"
+                  disabled={!staked || staked === 0n}
+                  className="px-12 py-6 bg-purple-600 rounded-xl font-bold hover:bg-purple-500 transition disabled:opacity-50"
                 >
-                  Unstaker
+                  Unstaker tout
                 </button>
-                {rewards && parseFloat(formatEther(rewards)) > 0 && (
+                {(rewards && rewards > 0n) && (
                   <button
                     onClick={handleClaim}
                     className="px-12 py-6 bg-green-600 rounded-xl font-bold hover:bg-green-500 transition"
@@ -165,12 +167,8 @@ export default function StakingPage() {
               </div>
             </div>
           </>
-        ) : (
-          <div className="text-center py-20">
-            <p className="text-2xl text-gray-400">Connecte ton wallet pour commencer le staking !</p>
-          </div>
         )}
       </div>
     </div>
   );
-}
+            }
