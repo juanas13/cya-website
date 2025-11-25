@@ -1,10 +1,7 @@
-
-/** @type {import('next').NextConfig} */
+// next.config.js/** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
-
-  // Plus besoin de transpile ou alias → on évite le SDK MetaMask buggy
+  swcMinify: true,  // Plus besoin de transpile ou alias → on évite le SDK MetaMask buggy
   webpack(config) {
     // Sécurité fallback (facultatif mais propre)
     config.resolve.fallback = {
@@ -13,10 +10,5 @@ const nextConfig = {
       net: false,
       tls: false,
       dns: false,
-    };
-
-    return config;
-  },
+    };return config;  },
 };
-
-export default nextConfig;
