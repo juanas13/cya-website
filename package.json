@@ -2,12 +2,16 @@
   "name": "cya-website",
   "version": "1.0.0",
   "private": true,
-  "type": "module",                  // CRUCIAL : élimine le warning "MODULE_TYPELESS_PACKAGE_JSON"
+  "type": "module",
+  "engines": {
+    "node": ">=22.0.0"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "validate": "node -e \"console.log(JSON.parse(require('fs').readFileSync('package.json', 'utf8'))); console.log('JSON OK!')\""
   },
   "dependencies": {
     "@tanstack/react-query": "^5.56.2",
