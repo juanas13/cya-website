@@ -5,7 +5,7 @@ Site web pour le token CYA (ERC20 upgradeable sur BSC) avec features staking, re
 ## Aperçu
 - **Tech Stack** : Next.js, TypeScript, Tailwind CSS.
 - **Features** : Connexion wallet, dashboard staking, mint rewards IA.
-- **Live** : [https://cya-coral.vercel.app](https://cya-coral.vercel.app)
+- **Live** : https://cya-site-gdbg5165h-juanas13s-projects.vercel.app/https://cya-site-gdbg5165h-juanas13s-projects.vercel.app/
 
 ## Installation Locale
 1. Clonez : `git clone https://github.com/juanas13/cya-website.git`
