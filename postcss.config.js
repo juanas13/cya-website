@@ -1,7 +1,10 @@
-// postcss.config.js  (CommonJS → marche parfaitement sans "type": "module")
-module.exports = {
+// postcss.config.js → ESM (compatible "type": "module")
+/** @type {import('postcss').Postcss} */
+const config = {
   plugins: {
     tailwindcss: {},
     autoprefixer: {},
   },
 };
+
+export default config;
