@@ -35,7 +35,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
           {/* Logo + Texte */}
           <Link href="/" className="flex items-center gap-3 group flex-shrink-0">
             <Image
-              src="/iHmVe2H_d.jpeg"
+              src="/logo-cya.jpeg"
               alt="CYA Token"
               width={52}
               height={52}
