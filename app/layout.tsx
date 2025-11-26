@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "CYA Token – CryptoIA Revolution",
   description: "Staking • Rewards IA • Gouvernance Décentralisée",
   keywords: "CYA, CryptoIA, token IA, staking, rewards, BSC",
-  icons: { icon: "/iHmVe2H_d.jpeg" },
+  icons: { icon: "/logo-cya.jpeg" },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
